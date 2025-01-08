@@ -30,16 +30,22 @@ class User(AbstractUser):
         return self.get_full_name() or self.username
 
 class ClientProfile(models.Model):
+    
     """
     Perfil extendido para usuarios que son clientes del ISP.
     Contiene información específica necesaria para la gestión del servicio.
     """
+    DOCUMENT_CHOICES = [
+        ('DNI', 'DNI'),
+        ('CE', 'Carnet Extranjería'),
+        ('PAS', 'Pasaporte'),
+    ]
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
         related_name='client_profile'
     )
-    document_type = models.CharField(max_length=20)
+    document_type = models.CharField(max_length=3,choices=DOCUMENT_CHOICES,default='DNI')
     document_number = models.CharField(max_length=20)
     address = models.TextField()
     installation_coordinates = models.CharField(max_length=50, blank=True)

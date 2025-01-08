@@ -2,10 +2,19 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from pathlib import Path 
 
 
 def main():
     """Run administrative tasks."""
+     # Configuración del path del proyecto
+    BASE_DIR = Path(__file__).resolve().parent
+    
+    # Añadir el directorio actual al path de Python
+    if str(BASE_DIR) not in sys.path:
+        sys.path.insert(0, str(BASE_DIR))
+        
+    # Configurar el módulo de settings
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fibertel_rest.config.settings.local')
     try:
         from django.core.management import execute_from_command_line

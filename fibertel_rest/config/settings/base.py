@@ -7,10 +7,10 @@ import sys
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Add the apps directory to the Python path
 
-sys.path.insert(0, os.path.join(BASE_DIR))
+sys.path.insert(0, str(BASE_DIR))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -21,7 +21,7 @@ SECRET_KEY = 'django-insecure-$%#a*zrk57l))hd@m$xh&0+kn%pp*f9r^vggr)ega*a%cri^&j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  
 
 
 # Application definition
@@ -38,18 +38,18 @@ BASE_APPS = [
 # Aplicaciones locales(generadas por nosotros)
 LOCAL_APPS = [
     'apps.accounts',
-    'apps.billing',
-    'apps.services',
-    'apps.support',
-    'apps.monitoring',
-    'apps.notifications',
+    # 'apps.billing',
+    'apps.services'
+    # 'apps.support',
+    # 'apps.monitoring',
+    # 'apps.notifications',
 ]
 
 # Aplicaciones de terceros (Librerias externas)
 THIRDS_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
-    'corsheaders',
+    'corsheaders'
 ]
 
 # REST Framework settings
@@ -81,8 +81,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
 ]
 
-INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRDS_APPS
-
+INSTALLED_APPS = list(BASE_APPS + LOCAL_APPS + THIRDS_APPS)
 
 
 
@@ -98,7 +97,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'fibertel_rest.urls'
+ROOT_URLCONF = 'fibertel_rest.config.urls'
+
 
 TEMPLATES = [
     {
@@ -116,7 +116,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'fibertel_rest.wsgi.application'
+WSGI_APPLICATION = 'fibertel_rest.config.wsgi.application'
 
 
 

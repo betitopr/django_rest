@@ -31,3 +31,21 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'first_name', 
                  'last_name', 'phone_number', 'is_client')
         read_only_fields = ('id',)
+
+class ClientProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    user_id = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        source='user',
+        write_only=True
+    )
+    
+    class Meta:
+        model = ClientProfile
+        fields = ('id', 'user', 'user_id', 'document_type', 
+                 'document_number', 'service_status', 'installation_coordinates')
+
+    def create(self, validated_data):
+        return ClientProfile.objects.create(**validated_data)
+    
+    
