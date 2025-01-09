@@ -38,7 +38,7 @@ BASE_APPS = [
 # Aplicaciones locales(generadas por nosotros)
 LOCAL_APPS = [
     'apps.accounts',
-    # 'apps.billing',
+    'apps.billing',
     'apps.services'
     # 'apps.support',
     # 'apps.monitoring',
