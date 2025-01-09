@@ -39,8 +39,8 @@ BASE_APPS = [
 LOCAL_APPS = [
     'apps.accounts',
     'apps.billing',
-    'apps.services'
-    # 'apps.support',
+    'apps.services',
+    'apps.support',
     # 'apps.monitoring',
     # 'apps.notifications',
 ]
@@ -49,7 +49,9 @@ LOCAL_APPS = [
 THIRDS_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
-    'corsheaders'
+    'corsheaders',
+    'rest_framework_nested',
+
 ]
 
 # REST Framework settings
