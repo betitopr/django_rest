@@ -1,3 +1,4 @@
 djangorestframework>=3.14.0
 djangorestframework-simplejwt>=5.3.0
 django-cors-headers>=4.3.0
+django-admin-interface>=0.12.0

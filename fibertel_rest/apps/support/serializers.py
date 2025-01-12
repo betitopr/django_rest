@@ -48,7 +48,7 @@ class TicketSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # Generar número de ticket automáticamente
         last_ticket = Ticket.objects.order_by('-id').first()
-        ticket_num = f"TKT-{(last_ticket.id + 1 if last_ticket else 1):06d}"
+        ticket_num = f"TKT-{s(last_ticket.id + 1 if last_ticket else 1):06d}"
         validated_data['ticket_number'] = ticket_num
         
         # Asignar el cliente actual

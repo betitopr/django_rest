@@ -21,19 +21,22 @@ SECRET_KEY = 'django-insecure-$%#a*zrk57l))hd@m$xh&0+kn%pp*f9r^vggr)ega*a%cri^&j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []  
+ALLOWED_HOSTS = ["127.0.0.1","192.168.1.5"]
+  
 
 
 # Application definition
 
 # Aplicaciones bases(por defecto)
 BASE_APPS = [
+    'admin_interface',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'colorfield',
 ]
 # Aplicaciones locales(generadas por nosotros)
 LOCAL_APPS = [
@@ -41,7 +44,7 @@ LOCAL_APPS = [
     'apps.billing',
     'apps.services',
     'apps.support',
-    # 'apps.monitoring',
+    'apps.monitoring',
     # 'apps.notifications',
 ]
 
@@ -68,7 +71,7 @@ REST_FRAMEWORK = {
 
 # JWT settings
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),# El token expira en 1 hora
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),# El token expira en 1 hora
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1), # Puedes renovar tokens por 1 día
     'ROTATE_REFRESH_TOKENS': True, # Cada vez que renuevas, obtienes un nuevo refresh token
     'BLACKLIST_AFTER_ROTATION': True, # El refresh token viejo se invalida
@@ -81,11 +84,33 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "http://192.168.1.5:8000"
 ]
-
+# Configuraciones adicionales de CORS
+CORS_ALLOW_ALL_ORIGINS = True  # Para desarrollo
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 INSTALLED_APPS = list(BASE_APPS + LOCAL_APPS + THIRDS_APPS)
 
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 MIDDLEWARE = [
